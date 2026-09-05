@@ -1,0 +1,454 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: #07130b;
+    color: white;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* ================= LOGIN / MENU ================= */
+
+.screen {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(circle at center,
+        #173d20 0%,
+        #07130b 60%,
+        #020604 100%);
+}
+
+.loginBox,
+.menuBox,
+.leaderboardBox,
+.gameOverBox {
+
+    width: min(420px, 92vw);
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    background: rgba(10, 25, 15, .94);
+
+    border: 1px solid rgba(100, 255, 130, .3);
+
+    box-shadow:
+        0 0 40px rgba(0, 255, 90, .15);
+
+    text-align: center;
+}
+
+h1 {
+    font-size: clamp(30px, 8vw, 50px);
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    opacity: .7;
+    margin-bottom: 25px;
+}
+
+input {
+    width: 100%;
+
+    padding: 14px;
+
+    margin-top: 12px;
+
+    border: 1px solid #315f3b;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    background: #08150b;
+
+    color: white;
+}
+
+input:focus {
+    border-color: #52ff75;
+}
+
+button {
+    border: none;
+
+    padding: 13px 20px;
+
+    border-radius: 10px;
+
+    background: #26c95a;
+
+    color: white;
+
+    font-weight: bold;
+
+    transition: .15s;
+}
+
+button:hover {
+    transform: scale(1.03);
+    filter: brightness(1.15);
+}
+
+.loginBox button,
+.menuBox button,
+.gameOverBox button {
+
+    width: 100%;
+    margin-top: 15px;
+}
+
+#loginMessage,
+#cheatMessage {
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+
+/* ================= GAME ================= */
+
+#gameScreen {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: #102718;
+}
+
+#gameCanvas {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    touch-action: none;
+}
+
+
+/* ================= HUD ================= */
+
+#hud {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+
+    padding: 15px;
+
+    display: flex;
+    justify-content: space-between;
+
+    pointer-events: none;
+
+    z-index: 10;
+}
+
+.hudLeft {
+    display: flex;
+    gap: 10px;
+}
+
+.hudItem,
+.healthBox {
+
+    padding: 9px 12px;
+
+    background: rgba(0,0,0,.55);
+
+    border-radius: 10px;
+
+    backdrop-filter: blur(5px);
+
+    font-size: 14px;
+}
+
+.healthBox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.healthOuter {
+    width: 130px;
+    height: 13px;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    background: #361010;
+}
+
+#healthBar {
+    height: 100%;
+    width: 100%;
+
+    background: #35e866;
+
+    transition: width .15s;
+}
+
+
+/* ================= CHEAT ================= */
+
+#cheatOpen {
+    position: absolute;
+
+    top: 70px;
+    right: 15px;
+
+    width: 48px;
+    height: 48px;
+
+    padding: 0;
+
+    border-radius: 50%;
+
+    z-index: 20;
+
+    background: rgba(0,0,0,.7);
+}
+
+#cheatBox {
+
+    position: absolute;
+
+    right: 15px;
+    top: 125px;
+
+    width: min(300px, 80vw);
+
+    padding: 12px;
+
+    border-radius: 12px;
+
+    background: rgba(0,0,0,.9);
+
+    z-index: 20;
+}
+
+#cheatBox button {
+    width: 100%;
+    margin-top: 8px;
+}
+
+
+/* ================= CONTROLS ================= */
+
+#controls {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 25px;
+
+    height: 170px;
+
+    pointer-events: none;
+
+    z-index: 15;
+}
+
+#joystick {
+    position: absolute;
+
+    left: 25px;
+    bottom: 10px;
+
+    width: 150px;
+    height: 150px;
+
+    pointer-events: auto;
+}
+
+#joystickBase {
+
+    position: absolute;
+
+    width: 130px;
+    height: 130px;
+
+    left: 10px;
+    top: 10px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.1);
+
+    border: 2px solid rgba(255,255,255,.25);
+}
+
+#joystickKnob {
+
+    position: absolute;
+
+    width: 60px;
+    height: 60px;
+
+    left: 35px;
+    top: 35px;
+
+    border-radius: 50%;
+
+    background: rgba(70,180,255,.65);
+
+    border: 2px solid rgba(150,220,255,.8);
+
+    box-shadow: 0 0 20px rgba(60,180,255,.5);
+}
+
+#attackBtn {
+
+    position: absolute;
+
+    right: 30px;
+    bottom: 25px;
+
+    width: 100px;
+    height: 100px;
+
+    border-radius: 50%;
+
+    font-size: 35px;
+
+    background: rgba(70,150,255,.55);
+
+    border: 3px solid rgba(180,220,255,.6);
+
+    pointer-events: auto;
+
+    user-select: none;
+}
+
+#attackBtn:active {
+    transform: scale(.9);
+}
+
+
+/* ================= GAME OVER ================= */
+
+.overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0,0,0,.65);
+
+    z-index: 50;
+}
+
+
+/* ================= LEADERBOARD ================= */
+
+#leaderboardList {
+    margin: 20px 0;
+
+    max-height: 55vh;
+
+    overflow-y: auto;
+}
+
+.rankRow {
+
+    display: grid;
+
+    grid-template-columns: 50px 1fr 100px;
+
+    padding: 12px;
+
+    margin-bottom: 7px;
+
+    border-radius: 10px;
+
+    background: rgba(255,255,255,.06);
+
+    text-align: left;
+}
+
+.rank {
+    font-weight: bold;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+
+    #hud {
+        padding: 8px;
+    }
+
+    .hudItem,
+    .healthBox {
+        font-size: 11px;
+        padding: 7px;
+    }
+
+    .healthOuter {
+        width: 80px;
+    }
+
+    #cheatOpen {
+        top: 55px;
+        right: 10px;
+    }
+
+    #controls {
+        bottom: 10px;
+    }
+
+    #joystick {
+        left: 5px;
+    }
+
+    #attackBtn {
+        right: 10px;
+        width: 85px;
+        height: 85px;
+    }
+      }
