@@ -1284,4 +1284,4 @@ function drawEnemies() {
         ctx.fillStyle =
             "#58ff65";
 
-        c
+        
